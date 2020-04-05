@@ -1,0 +1,40 @@
+* Show company tasks
+**TabActive
+- getAllPendingTasksPerCompany  (table: CompanyTasks ; path: "CompanyTasks/Company/{cmpId}/Tasks}"; condition state = active), operation: getAll
+**Tabinactive
+- getAllNewTasksPerCompany      (table: CompanyTasks ; path: "CompanyTasks/Company/{cmpId}/Tasks}"; condition state = inactive), operation: getAll
+
+
+* Show task details
+- getTaskDetailsBbyId  (table: CompanyTasksDetails ; path: "CompanyTasksDetails/Company/{cmpId}/Tasks/{taskid}}") operation: getSingleObject
+- getTaskWorkers       (table: TaskWorkers; path "TaskWorkers/Tasks/{taskId}/Workers") operation: getAll
+
+
+
+* create new task
++ addnewTaskInCompany (table: CompanyTasks; path "CompanyTasks/Company/{cmpId}/Tasks") operation: add record
++ addnewTaskInCompany (table: CompanyTasksDetails; path "CompanyTasks/Company/{cmpId}/Tasks") operation: add record
+
+forEachWorkerAddedtoTheTask:
++ addNewTaskInWorkerTasks (table: WorkerTasks; path "WorkerTasks/Workers/{wrkId}/Tasks") operation: add record
++ addNewTaskDetailsInWorker (table: WorkerTasksDetails; path "WorkerTasksDetails/Workers/{wrkId}/Tasks") operation: add record
++ addTaskWorkers       (table: TaskWorkers; path "TaskWorkers/Tasks/{taskId}/Workers") operation: add record
+
+
+
+
+
+* Show company workers
+**TabActive
+- getAllActiveusersPerCompany  (table: CompanyWorkers ; path: "CompanyWorkers/Company/{cmpId}/Workers"; condition: where status = active)
+**Tabinactive
+- getAllNewTasksPerCompany     (table: CompanyWorkers ; path: "CompanyWorkers/Company/{cmpId}/Workers}"; condition: where status = inactive)
+
+
+* Show worker details
+- getWorkerDetails  (table: CompanyWorkersDetails ; /cmpId/wrkId)
+
+
+*create new worker
++ addCompanyWorker            (table: CompanyWorkers)
++ addCompanyWorkerDetails     (table: CompanyWorkersDetails)
